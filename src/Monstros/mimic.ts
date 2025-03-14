@@ -4,7 +4,7 @@ import { Personagem } from "../Personagem/personagem";
 export class Mimic implements Inimigo {
     nome = "Mimic";
     vida = 70;
-    forca = 15;
+    forca = 20;
     defesa = 6;
 
     atacar(alvo: Personagem): void {

@@ -4,7 +4,7 @@ import { Personagem } from "../Personagem/personagem";
 export class Slime implements Inimigo {
     nome = "Slime";
     vida = 30;
-    forca = 5;
+    forca = 16;
     defesa = 2;
 
     atacar(alvo: Personagem): void {
