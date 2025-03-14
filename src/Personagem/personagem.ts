@@ -22,10 +22,13 @@ export class Personagem {
         console.log(`${this.nome} atacou ${alvo.nome} causando ${dano} de dano!`);
     }
 
-    defender(alvo: Inimigo): void {
-        const danoFinal = Math.max(this.forca - this.defesa, 0);
-        this.vida -= danoFinal;
-        console.log(`${this.nome} recebeu ${danoFinal} de dano do inimigo!`);
+    defender(ataqueInimigo: number): void {
+        if (this.defesa >= ataqueInimigo) {
+            console.log(`${this.nome} bloqueou completamente o ataque!`);
+        } else {
+            const danoFinal = ataqueInimigo - this.defesa;
+            this.vida -= danoFinal;
+            console.log(`${this.nome} defendeu, mas ainda tomou ${danoFinal} de dano!`);
+        }
     }
-    
 }

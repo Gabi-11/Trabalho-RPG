@@ -15,7 +15,7 @@ export function lutar(personagem: Personagem, inimigo: Inimigo): void {
         if (escolha === 1) {
             personagem.atacar(inimigo);
         } else if (escolha === 2) {
-            personagem.defender(inimigo);
+            console.log(`${personagem.nome} se defendeu!`);
         } else if (escolha === 3) {
             if (personagem.inventario.length > 0) {
                 const item = personagem.inventario.pop();
@@ -29,11 +29,17 @@ export function lutar(personagem: Personagem, inimigo: Inimigo): void {
             return;
         }
 
+        // Turno do inimigo
         if (inimigo.vida > 0) {
-            personagem.defender(inimigo);
+            if (escolha === 2) {
+                personagem.defender(inimigo.forca);
+            } else {
+                personagem.vida -= inimigo.forca;
+                console.log(`${inimigo.nome} atacou ${personagem.nome}, causando ${inimigo.forca} de dano!`);
+            }
         }
     }
-    
+
     if (personagem.vida > 0) {
         console.log(`${inimigo.nome} foi derrotado!`);
         const item = new Item("Poção de Cura", (p) => p.vida += 20);
@@ -41,7 +47,7 @@ export function lutar(personagem: Personagem, inimigo: Inimigo): void {
         personagem.inventario.push(item);
     } else {
         console.log("Você foi derrotado...");
-        return;
     }
 }
+
 

@@ -48,7 +48,7 @@ function lutar(personagem, inimigo) {
             personagem.atacar(inimigo);
         }
         else if (escolha === 2) {
-            personagem.defender(inimigo);
+            console.log(`${personagem.nome} está se preparando para se defender!`);
         }
         else if (escolha === 3) {
             if (personagem.inventario.length > 0) {
@@ -64,8 +64,15 @@ function lutar(personagem, inimigo) {
             console.log("Você fugiu da batalha!");
             return;
         }
+        // Turno do inimigo
         if (inimigo.vida > 0) {
-            personagem.defender(inimigo);
+            if (escolha === 2) {
+                personagem.defender(inimigo.forca);
+            }
+            else {
+                personagem.vida -= inimigo.forca;
+                console.log(`${inimigo.nome} atacou ${personagem.nome}, causando ${inimigo.forca} de dano!`);
+            }
         }
     }
     if (personagem.vida > 0) {
@@ -76,6 +83,5 @@ function lutar(personagem, inimigo) {
     }
     else {
         console.log("Você foi derrotado...");
-        return;
     }
 }
